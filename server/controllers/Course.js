@@ -27,7 +27,7 @@ exports.createCourse = async (req, res) => {
     const thumbnail = req.files.thumbnailImage
 
     // Convert the tag and instructions from stringified Array to Array
-    const tag = JSON.parse(JSON.stringify(_tag))
+    const tag = JSON.parse(_tag)
     const instructions = JSON.parse(_instructions)
 
     console.log("tag", tag)

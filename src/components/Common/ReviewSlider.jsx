@@ -95,12 +95,11 @@ function ReviewSlider() {
                   </div>
                 </div>
               </SwiperSlide>
-              
             )
           })}
+          {/* <SwiperSlide>Slide 1</SwiperSlide> */}
         </Swiper>
       </div>
-      
     </div>
   )
 }

@@ -39,18 +39,24 @@ function Navbar() {
   const [subLinks, setSubLinks] = useState([])
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    ;(async () => {
-      setLoading(true)
+  const fetchSubLinks = async () => {
+    (async () => {
+      setLoading(true);
       try {
-        const res = await apiConnector("GET", categories.CATEGORIES_API)
-        setSubLinks(res.data.data)
+        const res = await apiConnector("GET", categories.CATEGORIES_API);
+        if (res) {
+          setSubLinks(res.data.data);
+        }
       } catch (error) {
-        console.log("Could not fetch Categories.", error)
+        console.log("Could not fetch Categories.", error);
       }
-      setLoading(false)
-    })()
-  }, [])
+      setLoading(false);
+    })();
+  };
+
+  useEffect(() => {
+    fetchSubLinks();
+  }, []);
 
   // console.log("sub links", subLinks)
 
@@ -89,7 +95,7 @@ function Navbar() {
                         <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
                         {loading ? (
                           <p className="text-center">Loading...</p>
-                        ) : subLinks.length ? (
+                        ) : subLinks?.length ? (
                           <>
                             {subLinks
                               ?.filter(
